@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 
 const poppins = Poppins({
@@ -24,8 +26,10 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased`}
       >
-        <NavBar />
-        <main className="p-4">{children}</main>
+        <Theme>
+          <NavBar />
+          <main className="p-4">{children}</main>
+        </Theme>
       </body>
     </html>
   );
