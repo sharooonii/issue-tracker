@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
 import "@radix-ui/themes/styles.css";
+import "./globals.css";
+import "./theme-config.css";
 import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 
@@ -26,7 +27,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased`}
       >
-        <Theme>
+        <Theme appearance="light" accentColor="violet">
           <NavBar />
           <main className="p-5">{children}</main>
         </Theme>
