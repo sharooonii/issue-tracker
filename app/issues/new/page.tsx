@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
     ssr: false,
@@ -25,7 +26,7 @@ export default function NewIssuePage() {
         register, 
         handleSubmit, 
         control,
-        formState: { errors }
+        formState: { errors, isSubmitting }
     } = useForm<IssueForm>({
         resolver: zodResolver(createIssueSchema)
     });
@@ -70,7 +71,10 @@ export default function NewIssuePage() {
                 />
                 <ErrorMessage>{errors.description?.message}</ErrorMessage>
             </div>
-            <Button type="submit">Submit New Issue</Button>
+            <Button type="submit" disabled={isSubmitting}>
+                Submit New Issue
+                {isSubmitting && <Spinner />}
+            </Button>
         </form>
     </div>
     );
