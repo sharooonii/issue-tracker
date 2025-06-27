@@ -26,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${poppins.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
         <Theme appearance="light" accentColor="violet">
           <NavBar />
