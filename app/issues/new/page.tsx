@@ -1,6 +1,6 @@
 "use client";
 
-import { TextField, Button, Text } from "@radix-ui/themes";
+import { TextField, Button } from "@radix-ui/themes";
 import { useForm, Controller } from "react-hook-form";
 import "easymde/dist/easymde.min.css";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
     ssr: false,
@@ -50,9 +51,7 @@ export default function NewIssuePage() {
                     variant="surface" 
                     placeholder="Title" 
                     {...register("title")} />
-                {errors.title && (
-                    <Text color="red" as="p">{errors.title.message}</Text>
-                )}
+                <ErrorMessage>{errors.title?.message}</ErrorMessage>
             </div>
             <div className="space-y-1">
                 <Controller
@@ -69,9 +68,7 @@ export default function NewIssuePage() {
                         />
                     )}
                 />
-                {errors.description && (
-                    <Text color="red" as="p">{errors.description.message}</Text>
-                )}
+                <ErrorMessage>{errors.description?.message}</ErrorMessage>
             </div>
             <Button type="submit">Submit New Issue</Button>
         </form>
